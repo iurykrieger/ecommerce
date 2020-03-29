@@ -2,6 +2,20 @@ version: "3.3"
 
 services:
 
+  transaction:
+    build:
+      context: ./ecommerce-transaction
+    image: ecommerce-transaction
+    container_name: ecommerce-transaction
+    env_file: ./docker-compose.env
+    ports:
+      - "3002:3000"
+    depends_on:
+      - redis
+      - mongo
+    volumes:
+      - ./ecommerce-transaction/services:/app/services
+
   cart:
     build:
       context: ./ecommerce-cart
@@ -54,9 +68,7 @@ services:
       - "5000:5000"
     volumes: 
       - ./ecommerce-app/src:/app/src
-    depends_on:
-      - mongo
-    
+
   mongo:
     image: mongo:latest
     container_name: ecommerce-mongo

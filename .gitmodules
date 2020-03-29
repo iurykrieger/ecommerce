@@ -7,3 +7,6 @@
 [submodule "ecommerce-cart"]
 	path = ecommerce-cart
 	url = git@github.com:iurykrieger/ecommerce-cart.git
+[submodule "ecommerce-transaction"]
+	path = ecommerce-transaction
+	url = git@github.com:iurykrieger/ecommerce-transaction.git

@@ -1,0 +1,35 @@
+version: "3.3"
+
+services:
+
+  app:
+    build: 
+      context: ./app
+      dockerfile: ./docker/app/Dockerfile
+    image: ecommerce-app
+    container_name: ecommerce-app
+    environment:
+      FLASK_ENV: "development"
+      FLASK_APP: "src/app.py"
+      MONGO_URI: "mongodb://mongo:27017/ecommerce"
+    ports:
+      - "5000:5000"
+    volumes: 
+      - ./app/src:/app/src
+    depends_on:
+      - mongo
+    
+  mongo:
+    image: mongo:latest
+    container_name: ecommerce-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./database/mongo:/data/db
+
+  mongo-seed:
+    build: 
+      context: ./app/docker/mongo-seed
+      dockerfile: ./Dockerfile
+    links:
+      - mongo

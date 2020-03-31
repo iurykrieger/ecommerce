@@ -7,7 +7,6 @@ services:
       context: ./app
       dockerfile: ./docker/app/Dockerfile
     image: ecommerce-app
-    container_name: ecommerce-app
     environment:
       FLASK_ENV: "development"
       FLASK_APP: "src/app.py"
@@ -21,7 +20,6 @@ services:
     
   mongo:
     image: mongo:latest
-    container_name: ecommerce-mongo
     ports:
       - "27017:27017"
     volumes:

@@ -6,7 +6,6 @@ services:
     build:
       context: ./ecommerce-cart
     image: ecommerce-cart
-    container_name: ecommerce-cart
     env_file: ./docker-compose.env
     ports:
       - "3001:3000"
@@ -20,7 +19,6 @@ services:
     build:
       context: ./ecommerce-catalog
     image: ecommerce-catalog
-    container_name: ecommerce-catalog
     env_file: ./docker-compose.env
     ports:
       - "3000:3000"
@@ -32,7 +30,6 @@ services:
 
   redis:
     image: redis:alpine
-    container_name: ecommerce-redis
     ports:
       - "6379:6379"
     labels:
@@ -45,7 +42,6 @@ services:
       context: ./ecommerce-app
       dockerfile: ./docker/app/Dockerfile
     image: ecommerce-app
-    container_name: ecommerce-app
     environment:
       FLASK_ENV: "development"
       FLASK_APP: "src/app.py"
@@ -59,7 +55,6 @@ services:
     
   mongo:
     image: mongo:latest
-    container_name: ecommerce-mongo
     ports:
       - "27017:27017"
     volumes:
